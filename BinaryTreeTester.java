@@ -9,30 +9,29 @@ public class BinaryTreeTester {
     public static void main(String[] args) {
         Random random = new Random();
 
-        AVLTree Treeson = new AVLTree(new avlBinNode("Sara"));
+        RedBlackTree Treeson = new RedBlackTree(new RBNode("S"));
 
         System.out.println(Treeson);
 
-        Treeson.insert(new avlBinNode("Mason"));
+        Treeson.insert(new RBNode("M"));
         System.out.println(Treeson);
 
-        Treeson.insert(new avlBinNode("Chinchi"));
+        Treeson.insert(new RBNode("C"));
         System.out.println(Treeson);
 
-        Treeson.insert(new avlBinNode("Toothpick"));
+        Treeson.insert(new RBNode("T"));
         System.out.println(Treeson);
 
-        Treeson.insert(new avlBinNode("Kinga"));
+        Treeson.insert(new RBNode("K"));
         System.out.println(Treeson);
-        Treeson.insert(new avlBinNode("Tyffy"));
+        Treeson.insert(new RBNode("T"));
         System.out.println(Treeson);
-        Treeson.insert(new avlBinNode("a"));
-        System.out.println(Treeson);
-
-        Treeson.remove("Mason");
+        System.out.println("\n\n\n\n");
+        Treeson.insert(new RBNode("A"));
         System.out.println(Treeson);
 
-        System.out.println("MASON NOOOOOOO");
+         Treeson.remove("M");
+         System.out.println(Treeson);
 
 
     }

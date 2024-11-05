@@ -214,7 +214,7 @@ class BinaryTree {
 
     private void printTree(String[][] M, BinNode root, int col, int row, int height) {
         if (root == null || row >= height) return;
-        M[row][col] = root.getData();
+        M[row][col] = root.toString();
         int gap = (int) Math.pow(2, height - row - 2);
         printTree(M, root.getLeft(), col - gap, row + 1, height);
         printTree(M, root.getRight(), col + gap, row + 1, height);
