@@ -1,5 +1,4 @@
 public class AVLTree extends BinaryTree {
-    // Constructor
     public AVLTree(avlBinNode n) {
         super(n);
     }
@@ -7,7 +6,7 @@ public class AVLTree extends BinaryTree {
         super();
     }
 
-    private avlBinNode rotateLeft(avlBinNode theIssue) {
+    public avlBinNode rotateLeft(avlBinNode theIssue) {
         //System.out.println("jo");
         avlBinNode newRoot = (avlBinNode) theIssue.getRight();
         theIssue.setRight(newRoot.getLeft());
@@ -28,17 +27,13 @@ public class AVLTree extends BinaryTree {
         return newRoot;
     }
 
-    private avlBinNode rotateRight(avlBinNode theIssue) {
-        //System.out.println("Performing right rotation...");
-        avlBinNode newRoot = (avlBinNode) theIssue.getLeft();  // `newRoot` becomes the current left child of `theIssue`
+    private avlBinNode rotateRight(avlBinNode theIssue){
+        avlBinNode newRoot = (avlBinNode) theIssue.getLeft(); 
         
-        // Update the left child of `theIssue` to the right child of `newRoot`
         theIssue.setLeft(newRoot.getRight());
         
-        // Set `theIssue` as the right child of `newRoot`
         newRoot.setRight(theIssue);
     
-        // Adjust the parent references
         if (theIssue.getParent() != null) {
             if (theIssue == theIssue.getParent().getLeft()) {
                 theIssue.getParent().setLeft(newRoot);
@@ -46,15 +41,13 @@ public class AVLTree extends BinaryTree {
                 theIssue.getParent().setRight(newRoot);
             }
         } else {
-            // If `theIssue` has no parent, `newRoot` becomes the new root of the AVL tree
             this.setRoot(newRoot);
         }
     
-        // Update the parent pointers
         newRoot.setParent(theIssue.getParent());
         theIssue.setParent(newRoot);
     
-        return newRoot;  // Return the new root after rotation
+        return newRoot; 
     }
     
     
@@ -86,26 +79,19 @@ public class AVLTree extends BinaryTree {
         avlBinNode n = (avlBinNode) super.remove(what);
         while (n != null) {
             int balanceFactor = balance(n);
-            //System.out.println("balance factor currently" + balanceFactor);
-            
 
             if (balanceFactor > 1) {
-                //System.out.println(balance((avlBinNode) n.getRight()));
                 if (balance((avlBinNode) n.getLeft()) < 0) { 
-                    //System.out.println("we are rotating left right");
                     rotateLR(n);
                 } else {
-                    //System.out.println("we are rotating right");
                     rotateRight(n);
                     
                 }
             }
             else if (balanceFactor < -1) {
                 if (balance((avlBinNode) n.getRight()) > 0) {
-                    //System.out.println("we are rotating right left");
                     rotateRL(n);
                 } else {
-                    //System.out.println("we are rotating left");
                     rotateLeft(n);
                 }
             }
@@ -120,34 +106,25 @@ public class AVLTree extends BinaryTree {
     }
 
     public void insert(avlBinNode n) {
-        //System.out.println("inserting: " + n);
         avlBinNode p = (avlBinNode) super.insert(n);  
-        //System.out.println("node parent is: " + p);
         n.setParent(p);
         n = n.getParent();
 
         while (n != null) {
             int balanceFactor = balance(n);
-            //System.out.println("balance factor currently" + balanceFactor);
-            
 
             if (balanceFactor > 1) {
-                //System.out.println(balance((avlBinNode) n.getRight()));
                 if (balance((avlBinNode) n.getLeft()) < 0) { 
-                    //System.out.println("we are rotating left right");
                     rotateLR(n);
                 } else {
-                    //System.out.println("we are rotating right");
                     rotateRight(n);
                     
                 }
             }
             else if (balanceFactor < -1) {
                 if (balance((avlBinNode) n.getRight()) > 0) {
-                    //System.out.println("we are rotating right left");
                     rotateRL(n);
                 } else {
-                    //System.out.println("we are rotating left");
                     rotateLeft(n);
                 }
             }
