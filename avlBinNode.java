@@ -11,6 +11,9 @@ class avlBinNode extends BinNode {
     public avlBinNode(String data){
         super(data);
     }
+    public avlBinNode(){
+        super();
+    }
     public avlBinNode getParent(){
         return this.parent;
     }

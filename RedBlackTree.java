@@ -106,35 +106,36 @@ public class RedBlackTree extends BinaryTree {
         u.setData(v.getData());
         v.setData(temp);
     }
-       void deleteNode(RBNode v) {
-        RBNode u = (RBNode)super.remove(v.getData());
-        boolean uvBlack = ((u == null || !u.getColor()) && (!v.getColor()));
-        RBNode parent = v.getParent();
+       public RBNode remove(String v) {
+        RBNode n = (RBNode)super.search(v);
+        RBNode u = (RBNode)super.remove(n.getData());
+        boolean uvBlack = ((u == null || !u.getColor()) && (!n.getColor()));
+        RBNode parent = n.getParent();
  
         if (u == null) {
-            if (v.getParent() == null)
+            if (n.getParent() == null)
                 super.setRoot(null);
             else {
                 if (uvBlack)
-                    fixDoubleBlack(v);
+                    fixDoubleBlack(n);
                      
-                else if (v.getSibling() != null)
-                    v.getSibling().setColor(true);
-                if (v.isOnLeft())
+                else if (n.getSibling() != null)
+                    n.getSibling().setColor(true);
+                if (n.isOnLeft())
                     parent.setLeft(null);
                 else
                     parent.setRight(null);
             }
-            return;
+            return n;
         }
  
-        if (v.getLeft() == null || v.getRight() == null) {
-            if (v.getParent() == null) {
-                v.setData(u.getData());
-                v.setRight(null);
-                v.setLeft(null);
+        if (n.getLeft() == null || n.getRight() == null) {
+            if (n.getParent() == null) {
+                n.setData(u.getData());
+                n.setRight(null);
+                n.setLeft(null);
             } else {
-                if (v.isOnLeft())
+                if (n.isOnLeft())
                     parent.setLeft(u);
                 else
                     parent.setRight(u);
@@ -146,10 +147,11 @@ public class RedBlackTree extends BinaryTree {
                 else
                     u.setColor(false); 
             }
-            return;
+            return n;
         }
-        swapValues(u, v);
-        deleteNode(u);
+        swapValues(u, n);
+        remove(u.getData());
+        return n;
     }
  
     void fixDoubleBlack(RBNode x) {

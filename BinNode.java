@@ -16,13 +16,12 @@ class BinNode {
         this.right = right;
         this.parent = null;
     }
-
-    // Overloaded constructor to handle the case when left and right are not provided
     public BinNode(String data) {
         this(data, null, null);
     }
-
-    // Getter and setter for data
+    public BinNode(){
+        
+    }
     public String getData() {
         return data;
     }
@@ -34,7 +33,6 @@ class BinNode {
         this.data = data;
     }
 
-    // Getter and setter for left child
     public BinNode getLeft() {
         return left;
     }

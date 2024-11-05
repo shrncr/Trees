@@ -76,7 +76,7 @@ public class AVLTree extends BinaryTree {
         return h1 - h2;
     }
     public avlBinNode remove(String what){
-        avlBinNode n = (avlBinNode) super.remove(what);
+        avlBinNode n = (avlBinNode)(super.remove(what));
         while (n != null) {
             int balanceFactor = balance(n);
 
